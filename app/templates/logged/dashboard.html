@@ -1,0 +1,297 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type='images/jpg' href="https://images.craftsnherbs.com/bee/IMG_0990.jpg">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <link rel='stylesheet' href='https://beedevservices.github.io/beedev-css/framework/beedev.css'>
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <title>Levan Log</title>
+</head>
+<body>
+    <header>
+        <h1>Levan Family Log</h1>
+        <nav>
+            {% block menu %}
+                {% include 'menus/menu.html'   %}
+            {% endblock menu %}
+            {% block logMenu %}
+                {% include 'menus/loggedMenu.html' %}
+            {% endblock logMenu %}
+        </nav>
+    </header>
+    <main>
+        <div>
+            {% if messages %}
+            <section class='messages'>
+                {% for message in messages %}
+                <h3 {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+                {% endfor %}
+            </section>
+            {% endif %}
+        </div>
+        <h1>All Movies and Music</h1>
+        {% block tabMenu %} {% include 'menus/indexTabMenu.html' %} {% endblock tabMenu %}
+        <div id='AD' class='tabContent'>
+            <div class="innerContent">
+                <h1>Movies A-D</h1>
+                <div class="content">
+                    <table>
+                        <tr>
+                            <th>DVD Title</th>
+                            <th>DVD Genre</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for dvd in dvds %}
+                            {% if dvd.title|first in 'ABCDabcd' %}
+                                <tr>
+                                    <td>{{dvd.title}}</td>
+                                    <td>{{dvd.genre}}</td>
+                                    <td><a href="/movie/{{dvd.id}}/view/">View More</a></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <h1>Music A-D</h1>
+                <div class="content">
+                    <table>
+                        <tr>
+                            <th>CD Title</th>
+                            <th>CD Artist(s)</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for cd in cds %}
+                            {% if cd.albumTitle|first in 'ABCDabcd' %}
+                                <tr>
+                                    <td>{{cd.albumTitle}}</td>
+                                    <td>{{cd.artist}}</td>
+                                    <td></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id='EH' class='tabContent'>
+            <div class="innerContent">
+                <h1>Movies E-H</h1>
+                <div class="content">
+                    <table>
+                        <tr>
+                            <th>DVD Title</th>
+                            <th>DVD Genre</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for dvd in dvds %}
+                            {% if dvd.title|first in 'EFGHefgh' %}
+                                <tr>
+                                    <td>{{dvd.title}}</td>
+                                    <td>{{dvd.genre}}</td>
+                                    <td><a href="/movie/{{dvd.id}}/view/">View More</a></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <h1>Music E-H</h1>
+                <div class="content">
+                    <table>
+                        <tr>
+                            <th>CD Title</th>
+                            <th>CD Artist(s)</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for c in cds %}
+                            {% if cd.albumTitle|first in 'EFGHefgh' %}
+                                <tr>
+                                    <td>{{cd.albumTitle}}</td>
+                                    <td>{{cd.artist}}</td>
+                                    <td></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id='IL' class='tabContent'>
+            <div class="innerContent">
+                <h1>Movies I-L</h1>
+                <div class="content">
+                    <table>
+                        <tr>
+                            <th>DVD Title</th>
+                            <th>DVD Genre</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for dvd in dvds %}
+                            {% if dvd.title|first in 'IJKLijkl' %}
+                                <tr>
+                                    <td>{{dvd.title}}</td>
+                                    <td>{{dvd.genre}}</td>
+                                    <td><a href="/movie/{{dvd.id}}/view/">View More</a></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <h1>Music I-L</h1>
+                <div class="content">
+                    <table>
+                        <tr>
+                            <th>CD Title</th>
+                            <th>CD Artist(s)</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for cd in cds %}
+                            {% if cd.albumTitle|first in 'IJKLijkl' %}
+                                <tr>
+                                    <td>{{cd.albumTitle}}</td>
+                                    <td>{{cd.artist}}</td>
+                                    <td></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id='MQ' class='tabContent'>
+            <div class="innerContent">
+                <h1>Movies M-Q</h1>
+                <div class="content">
+                    <table>
+                        <tr>
+                            <th>DVD Title</th>
+                            <th>DVD Genre</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for dvd in dvds %}
+                            {% if dvd.title|first in 'MNOPQmnopq' %}
+                                <tr>
+                                    <td>{{dvd.title}}</td>
+                                    <td>{{dvd.genre}}</td>
+                                    <td><a href="/movie/{{dvd.id}}/view/">View More</a></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <h1>Music M-Q</h1>
+                <div class="content">
+                    <table>
+                        <tr>
+                            <th>CD Title</th>
+                            <th>CD Artist(s)</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for cd in cds %}
+                            {% if cd.albumTitle|first in 'MNOPQmnopq' %}
+                                <tr>
+                                    <td>{{cd.albumTitle}}</td>
+                                    <td>{{cd.artist}}</td>
+                                    <td></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id='RU' class='tabContent'>
+            <div class="innerContent">
+                <h1>Movies R-U</h1>
+                <div class="content">
+                    <table>
+                        <tr>
+                            <th>DVD Title</th>
+                            <th>DVD Genre</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for dvd in dvds %}
+                            {% if dvd.title|first in 'RSTUrstu' %}
+                                <tr>
+                                    <td>{{dvd.title}}</td>
+                                    <td>{{dvd.genre}}</td>
+                                    <td><a href="/movie/{{dvd.id}}/view/">View More</a></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <h1>Music R-U</h1>
+                <div class="content">
+                    <table>
+                        <tr>
+                            <th>CD Title</th>
+                            <th>CD Artist(s)</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for cd in cds %}
+                            {% if cd.albumTitle|first in 'RSTUrstu' %}
+                                <tr>
+                                    <td>{{cd.albumTitle}}</td>
+                                    <td>{{cd.artist}}</td>
+                                    <td></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id='VZ' class='tabContent'>
+            <div class="innerContent">
+                <h1>Movies V-Z</h1>
+                <div class="content">
+                    <table>
+                        <tr>
+                            <th>DVD Title</th>
+                            <th>DVD Genre</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for dvd in dvds %}
+                            {% if dvd.title|first in 'VWXYZvwxyz' %}
+                                <tr>
+                                    <td>{{dvd.title}}</td>
+                                    <td>{{dvd.genre}}</td>
+                                    <td><a href="/movie/{{dvd.id}}/view/">View More</a></td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <h1>Music V-Z</h1>
+                <div class="content">
+                    <table>
+                        <tr>
+                            <th>CD Title</th>
+                            <th>CD Artist(s)</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for cd in cds %}
+                            {% if cd.albumTitle|first in 'VWXYZvwxyz' %}
+                                <tr>
+                                    <td>{{cd.albumTitle}}</td>
+                                    <td>{{cd.artist}}</td>
+                                    <td></td>
+                                </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        {% block footer %} {% include 'menus/footer.html' %} {% endblock footer %}
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src='{% static "js/scripts.js"%}'></script>
+</body>
+</html>

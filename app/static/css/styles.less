@@ -1,0 +1,130 @@
+.flexrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.flexcolumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: @font;
+    padding: 1em;
+    margin: 1em;
+    font-size: 1.1em;
+}
+table, th, td {
+    border: 1px solid @border;
+
+    a {
+        color: @font;
+        text-decoration: none;
+    }
+}
+table {
+    width: 85%;
+    margin: .5em;
+    background-color: @altbg;
+}
+th, td {
+    padding: .5em;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+@bg: #2b2a2a;
+@font: #e2e2cc;
+@border: #9b9b04;
+@altbg: #500c5081;
+@button: #800080;
+
+body {
+    .flexcolumn();
+    background-image: url('https://www.transparenttextures.com/patterns/brick-wall.png');
+    background-color: @bg;
+    color: @font;
+
+    header {
+        nav{
+            button {
+                background-color: @button;
+                color: @font;
+                padding: .5em;
+            }
+        }
+    }
+
+    main {
+        .tabMenu {
+            .flexrow();
+            justify-content: space-evenly;
+            padding: 1em;
+            width: 85%;
+            font-size: 1.2em;
+
+            .tabs {
+                overflow: hidden;
+                padding: 1em;
+            }
+            .tabs:hover {
+                background-color: @altbg;
+            }
+            .tabs.active {
+                border: 3px groove @border;
+            }
+        }
+        .tabContent {
+            display: none;
+            width: 85%;
+
+            .innerContent {
+                .flexcolumn();
+                width: 95%;
+
+                .content {
+                    .flexcolumn();
+                    width: 95%;
+
+                    .pagination li:hover{
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        .collapsible {
+            color: @font;
+            cursor: pointer;
+            padding: 18px;
+            width: 50%;
+            border: none;
+            text-align: center;
+            outline: none;
+            font-size: 15px;
+            background-color: @button;
+        }
+        .active, .collapsible:hover {
+            background-color: @altbg;
+        }
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            width: 95%;
+
+            table {
+                width: 100%;
+            }
+            .mobile {
+                display: none;
+            }
+        }
+    }
+    .messages {
+        background-color: #7e3737;
+    }
+}

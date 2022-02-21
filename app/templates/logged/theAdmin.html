@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type='images/jpg' href="{% static 'images/bee.jpg' %}">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <link rel='stylesheet' href='https://beedevservices.github.io/beedev-css/framework/beedev.css'>
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <title>Levan Log</title>
+</head>
+<body>
+    <header>
+        <h1>Levan Family Log</h1>
+        <h1>Welcome, {{user.firstName}}</h1>
+        <nav>
+            {% block menu %}
+                {% include 'menus/menu.html'   %}
+            {% endblock menu %} {% block loggedMenu %}
+                {% include 'menus/loggedMenu.html'   %}
+            {% endblock loggedMenu %}
+        </nav>
+    </header>
+    <main>
+        <div>
+            {% if messages %}
+            <section class='messages'>
+                {% for message in messages %}
+                <h3 {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+                {% endfor %}
+            </section>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="column">
+                <h2>Add Movie</h2>
+                <form action="/theAdmin/movie/create/" method="post">
+                    {% csrf_token %}
+                    <section>
+                        <label for="title">DVD Title</label>
+                        <input type="text" name="title">
+                    </section>
+                    <section>
+                        <label for="genre">Genre</label>
+                        <input type="text" name="genre">
+                    </section>
+                    <section>
+                        <label for="actors">Actors</label>
+                        <textarea name="actors" cols="30" rows="10"></textarea>
+                    </section>
+                    <section>
+                        <label for="year">Year</label>
+                        <input type="text" name="year">
+                    </section>
+                    <section>
+                        <label for="misc">Misc information</label>
+                        <textarea name="misc"cols="30" rows="10"></textarea>
+                    </section>
+                    <section>
+                        <input type="hidden" name="user" value="{{user.id}}">
+                    </section>
+                    <button>Add Movie</button>
+                </form>
+            </div>
+            <div class="column">
+                <h2>Add Music</h2>
+                <form action="/theAdmin/music/create/" method="post">
+                    {% csrf_token %}
+                    <section>
+                        <label for="albumTitle">Album Title</label>
+                        <input type="text" name="albumTitle">
+                    </section>
+                    <section>
+                        <label for="artist">Artist</label>
+                        <input type="text" name="artist">
+                    </section>
+                    <section>
+                        <label for="year">Year</label>
+                        <input type="text" name="year">
+                    </section>
+                    <section>
+                        <input type="hidden" name="user" value="{{user.id}}">
+                    </section>
+                    <button>Add Music</button>
+                </form>
+            </div>
+        </div>
+        <button type="button" class='collapsible'>
+            <h3>Movies</h3>
+        </button>
+        <div class="content">
+            <table class="desktop">
+                <tr>
+                    <th>DVD Title</th>
+                    <th>Update Form</th>
+                    <th>Actions</th>
+                </tr>
+                {% for movie in movies %}
+                    <tr>
+                        <td>{{movie.title}}</td>
+                        <td>
+                            <form action="/theAdmin/movie/{{movie.id}}/update/" method="post">
+                                {% csrf_token %}
+                                <section>
+                                    <label for="title">DVD Title</label>
+                                    <input type="text" name="title" value="{{movie.title}}">
+                                </section>
+                                <section>
+                                    <label for="genre">Genre</label>
+                                    <input type="text" name="genre" value="{{movie.genre}}">
+                                </section>
+                                <section>
+                                    <label for="actors">Actors</label>
+                                    <textarea name="actors" cols="30" rows="10">{{movie.actors}}</textarea>
+                                </section>
+                                <section>
+                                    <label for="year">Year</label>
+                                    <input type="text" name="year" value="{{movie.year}}">
+                                </section>
+                                <section>
+                                    <label for="misc">Misc information</label>
+                                    <input type="text" name="misc" value="{{movie.misc}}">
+                                </section>
+                                <button>Update Movie</button>
+                            </form>
+                        </td>
+                        <td><a href="/theAdmin/movie/{{movie.id}}/delete/">Delete Movie</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <button type="button" class='collapsible'>
+            <h3>Music</h3>
+        </button>
+        <div class="content">
+            <table>
+                <tr>
+                    <th>CD Title</th>
+                    <th>Update CD</th>
+                    <th>Actions</th>
+                </tr>
+                {% for music in musics %}
+                    <td>{{music.albumTitle}}</td>
+                    <td>
+                        <form action="/theAdmin/music/{{music.id}}/update/" method="'post">
+                            {% csrf_token %}
+                            <section>
+                                <label for="albumTitle">Album Title</label>
+                                <input type="text" name="albumTitle" value="{{music.albumTitle}}">
+                            </section>
+                            <section>
+                                <label for="artist">Artist</label>
+                                <input type="text" name="artist" value="{{music.artist}}">
+                            </section>
+                            <section>
+                                <label for="year">Year</label>
+                                <input type="text" name="year" value="{{music.year}}">
+                            </section>
+                            <button>Update Music</button>
+                        </form>
+                    </td>
+                    <td><a href="/theAdmin/music/{{music.id}}/delete">Delete</a></td>
+                {% endfor %}
+            </table>
+        </div>
+    </main>
+    <footer>
+        {% block footer %} {% include 'menus/footer.html' %} {% endblock footer %}
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src='{% static "js/scripts.js"%}'></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type='images/jpg' href="{% static 'images/bee.jpg' %}">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <link rel='stylesheet' href='https://beedevservices.github.io/beedev-css/framework/beedev.css'>
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <title>{{dvd.title}}</title>
+</head>
+<body>
+    <header>
+        <h1>{{dvd.title}}</h1>
+        <nav>
+            {% block menu %}
+                {% include 'menus/menu.html'   %}
+            {% endblock menu %}
+            {% block logMenu %}
+                {% include 'menus/loggedMenu.html' %}
+            {% endblock logMenu %}
+        </nav>
+    </header>
+    <main>
+        <div>
+            {% if messages %}
+            <section class='messages'>
+                {% for message in messages %}
+                <h3 {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+                {% endfor %}
+            </section>
+            {% endif %}
+        </div>
+        <h1>Movie / DVD Title: {{dvd.title}}</h1>
+        <h2>Genre: {{dvd.genre}}</h2>
+        <section>
+            <h3>Actors(s):</h3>
+            <textarea cols="30" rows="10" disabled>{{dvd.actors}}</textarea>
+        </section>
+        <h3>Release / Publish Year: {{dvd.year}}</h3>
+        <section>
+            <h3>Misc Information: </h3>
+            <textarea cols="30" rows="10" disabled>{{dvd.misc}}</textarea>
+        </section>
+        
+        <h4>Added by: {% for user in users %}
+            {% if user.id == dvd.user_id %}
+                {{user.username}}
+            {% endif %}
+        {% endfor %}</h4>
+    </main>
+    <footer>
+        {% block footer %} {% include 'menus/footer.html' %} {% endblock footer %}
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src='{% static "js/scripts.js"%}'></script>
+</body>
+</html>

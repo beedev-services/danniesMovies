@@ -1,0 +1,126 @@
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.flexcolumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+a {
+  text-decoration: none;
+  color: #e2e2cc;
+  padding: 1em;
+  margin: 1em;
+  font-size: 1.1em;
+}
+table,
+th,
+td {
+  border: 1px solid #9b9b04;
+}
+table a,
+th a,
+td a {
+  color: #e2e2cc;
+  text-decoration: none;
+}
+table {
+  width: 85%;
+  margin: 0.5em;
+  background-color: #500c5081;
+}
+th,
+td {
+  padding: 0.5em;
+  text-align: center;
+  font-size: 1.2em;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://www.transparenttextures.com/patterns/brick-wall.png');
+  background-color: #2b2a2a;
+  color: #e2e2cc;
+}
+body header nav button {
+  background-color: #800080;
+  color: #e2e2cc;
+  padding: 0.5em;
+}
+body main .tabMenu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1em;
+  width: 85%;
+  font-size: 1.2em;
+}
+body main .tabMenu .tabs {
+  overflow: hidden;
+  padding: 1em;
+}
+body main .tabMenu .tabs:hover {
+  background-color: #500c5081;
+}
+body main .tabMenu .tabs.active {
+  border: 3px groove #9b9b04;
+}
+body main .tabContent {
+  display: none;
+  width: 85%;
+}
+body main .tabContent .innerContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+}
+body main .tabContent .innerContent .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+}
+body main .tabContent .innerContent .content .pagination li:hover {
+  cursor: pointer;
+}
+body main .collapsible {
+  color: #e2e2cc;
+  cursor: pointer;
+  padding: 18px;
+  width: 50%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+  background-color: #800080;
+}
+body main .active,
+body main .collapsible:hover {
+  background-color: #500c5081;
+}
+body main .content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  width: 95%;
+}
+body main .content table {
+  width: 100%;
+}
+body main .content .mobile {
+  display: none;
+}
+body .messages {
+  background-color: #7e3737;
+}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    {% block tabMenu %}
+    <h3>Click on a topic to view current Entries</h3>
+        <nav class='tabMenu'>
+            <a href="#tabs02" class='tabs' onclick="openSection(event, 'AD')">A-D</a>
+            <a href="#tabs03" class='tabs' onclick="openSection(event, 'EH')">E-H</a>
+            <a href="#tabs04" class='tabs' onclick="openSection(event, 'IL')">I-L</a>
+            <a href="#tabs05" class='tabs' onclick="openSection(event, 'MQ')">M-Q</a>
+            <a href="#tabs06" class='tabs' onclick="openSection(event, 'RU')">R-U</a>
+            <a href="#tabs07" class='tabs' onclick="openSection(event, 'VZ')">V-Z</a>
+        </nav>
+    {% endblock tabMenu %}
+</body>
+</html>
