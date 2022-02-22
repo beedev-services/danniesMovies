@@ -31,7 +31,20 @@
             {% endif %}
         </div>
         <h1>Movie / DVD Title: {{dvd.title}}</h1>
-        <h2>Genre: {{dvd.genre}}</h2>
+        <div class="row">
+            <h2>Genre:</h2>
+            <ul>
+                {% for film in films %}
+                    {% if dvd.id == film.dvd_id %}
+                        {% for genre in genres %}
+                            {% if film.genre_id == genre.id %}
+                                <li>{{genre.topic}}</li>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
         <section>
             <h3>Actors(s):</h3>
             <textarea cols="30" rows="10" disabled>{{dvd.actors}}</textarea>

@@ -46,7 +46,19 @@
                             {% if dvd.title|first in 'ABCDabcd' %}
                                 <tr>
                                     <td>{{dvd.title}}</td>
-                                    <td>{{dvd.genre}}</td>
+                                    <td>
+                                        <ul>
+                                            {% for film in films %}
+                                                {% if dvd.id == film.dvd_id %}
+                                                    {% for genre in genres %}
+                                                        {% if film.genre_id == genre.id %}
+                                                            <li>{{genre.topic}}</li>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
                                     <td><a href="/movie/{{dvd.id}}/view/">View More</a></td>
                                 </tr>
                             {% endif %}
@@ -88,7 +100,19 @@
                             {% if dvd.title|first in 'EFGHefgh' %}
                                 <tr>
                                     <td>{{dvd.title}}</td>
-                                    <td>{{dvd.genre}}</td>
+                                    <td>
+                                        <ul>
+                                            {% for film in films %}
+                                                {% if dvd.id == film.dvd_id %}
+                                                    {% for genre in genres %}
+                                                        {% if film.genre_id == genre.id %}
+                                                            <li>{{genre.topic}}</li>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
                                     <td><a href="/movie/{{dvd.id}}/view/">View More</a></td>
                                 </tr>
                             {% endif %}
@@ -130,7 +154,19 @@
                             {% if dvd.title|first in 'IJKLijkl' %}
                                 <tr>
                                     <td>{{dvd.title}}</td>
-                                    <td>{{dvd.genre}}</td>
+                                    <td>
+                                        <ul>
+                                            {% for film in films %}
+                                                {% if dvd.id == film.dvd_id %}
+                                                    {% for genre in genres %}
+                                                        {% if film.genre_id == genre.id %}
+                                                            <li>{{genre.topic}}</li>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
                                     <td><a href="/movie/{{dvd.id}}/view/">View More</a></td>
                                 </tr>
                             {% endif %}
@@ -172,7 +208,19 @@
                             {% if dvd.title|first in 'MNOPQmnopq' %}
                                 <tr>
                                     <td>{{dvd.title}}</td>
-                                    <td>{{dvd.genre}}</td>
+                                    <td>
+                                        <ul>
+                                            {% for film in films %}
+                                                {% if dvd.id == film.dvd_id %}
+                                                    {% for genre in genres %}
+                                                        {% if film.genre_id == genre.id %}
+                                                            <li>{{genre.topic}}</li>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
                                     <td><a href="/movie/{{dvd.id}}/view/">View More</a></td>
                                 </tr>
                             {% endif %}
@@ -214,7 +262,19 @@
                             {% if dvd.title|first in 'RSTUrstu' %}
                                 <tr>
                                     <td>{{dvd.title}}</td>
-                                    <td>{{dvd.genre}}</td>
+                                    <td>
+                                        <ul>
+                                            {% for film in films %}
+                                                {% if dvd.id == film.dvd_id %}
+                                                    {% for genre in genres %}
+                                                        {% if film.genre_id == genre.id %}
+                                                            <li>{{genre.topic}}</li>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
                                     <td><a href="/movie/{{dvd.id}}/view/">View More</a></td>
                                 </tr>
                             {% endif %}
@@ -256,7 +316,19 @@
                             {% if dvd.title|first in 'VWXYZvwxyz' %}
                                 <tr>
                                     <td>{{dvd.title}}</td>
-                                    <td>{{dvd.genre}}</td>
+                                    <td>
+                                        <ul>
+                                            {% for film in films %}
+                                                {% if dvd.id == film.dvd_id %}
+                                                    {% for genre in genres %}
+                                                        {% if film.genre_id == genre.id %}
+                                                            <li>{{genre.topic}}</li>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
                                     <td><a href="/movie/{{dvd.id}}/view/">View More</a></td>
                                 </tr>
                             {% endif %}

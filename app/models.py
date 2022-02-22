@@ -71,7 +71,6 @@ class Dvd(models.Model):
     year = models.CharField(max_length=255, blank=True)
     misc = models.TextField(max_length=255, blank=True)
     user = models.ForeignKey(User, related_name='owner', on_delete=CASCADE)
-    genre = models.ForeignKey(Topic, related_name='theTopic', on_delete=CASCADE)
 
 class Movie(models.Model):
     movie = models.OneToOneField(Dvd, unique=True, on_delete=CASCADE)
@@ -83,6 +82,10 @@ def create_dvd_movie(sender, instance, created, **kwargs):
     if created:
         Dvd.objects.create(dvd=instance)
         post_save.connect(create_dvd_movie, sender=Dvd)
+
+class Film(models.Model):
+    dvd = models.ForeignKey(Dvd, related_name='theMovie', on_delete=CASCADE, blank=True)
+    genre = models.ForeignKey(Topic, related_name='theGenre', on_delete=CASCADE, blank=True)
 
 class Cds(models.Model):
     albumTitle = models.CharField(max_length=255)

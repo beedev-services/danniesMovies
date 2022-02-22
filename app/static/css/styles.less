@@ -106,6 +106,7 @@ body {
             outline: none;
             font-size: 15px;
             background-color: @button;
+            margin: 1em;
         }
         .active, .collapsible:hover {
             background-color: @altbg;
@@ -121,6 +122,61 @@ body {
             }
             .mobile {
                 display: none;
+            }
+        }
+        .row {
+            margin: 1em;
+            width: 90%;
+            align-items: flex-start;
+
+            .column {
+                margin: 1em;
+                width: 50%;
+
+                form {
+                    .flexcolumn();
+                    background-color: @altbg;
+                    padding: 1.5em;
+                    width: 85%;
+
+                    section {
+                        .flexrow();
+                        margin: 1em;
+                        width: 70%;
+                        justify-content: space-between;
+
+                        label {
+                            padding: 0 1em;
+                        }
+                    }
+                    .checkbox {
+                        .flexrow();
+                        margin: 1em;
+                        width: 95%;
+                        
+                        .form {
+                            .flexrow();
+                            flex-wrap: wrap;
+
+                            section {
+                                .flexcolumn();
+                                width: 10%;
+                            }
+                        }
+                    }
+                }
+
+                .row {
+                    flex-wrap: wrap;
+                    padding: 1.5em;
+                    background-color: @altbg;
+
+                    .wrap {
+                        margin: .5em;
+                        padding: 0 1em;
+                        font-size: 1.2em;
+                    }
+                }
             }
         }
     }

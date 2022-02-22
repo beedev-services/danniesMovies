@@ -35,16 +35,33 @@
         </div>
         <div class="row">
             <div class="column">
+                <h2>Add Genres</h2>
+                <form action="/theAdmin/genre/add/" method="post">
+                    {% csrf_token %}
+                    <section>
+                        <label for="topic">Genre</label>
+                        <input type="text" name="topic">
+                    </section>
+                    <button>Add Genre</button>
+                </form>
+            </div>
+            <div class="column">
+                <h2>Current Genres</h2>
+                <div class="row">
+                    {% for genre in genres %}
+                        <span class="wrap">{{genre.topic}}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
                 <h2>Add Movie</h2>
                 <form action="/theAdmin/movie/create/" method="post">
                     {% csrf_token %}
                     <section>
                         <label for="title">DVD Title</label>
                         <input type="text" name="title">
-                    </section>
-                    <section>
-                        <label for="genre">Genre</label>
-                        <input type="text" name="genre">
                     </section>
                     <section>
                         <label for="actors">Actors</label>
@@ -94,6 +111,8 @@
             <table class="desktop">
                 <tr>
                     <th>DVD Title</th>
+                    <th>Add Genre</th>
+                    <th>Genres</th>
                     <th>Update Form</th>
                     <th>Actions</th>
                 </tr>
@@ -101,15 +120,39 @@
                     <tr>
                         <td>{{movie.title}}</td>
                         <td>
+                            <form action="/theAdmin/movie/genre/add/" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name='dvd' value="{{movie.id}}">
+                                <section>
+                                    <label for="genre">Chose Genre (must add 1 at a time</label>
+                                    <select name="genre">
+                                        {% for genre in genres %}
+                                            <option value="{{genre.id}}">{{genre.topic}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </section>
+                                <button>Add Genre</button>
+                            </form>
+                        </td>
+                        <td>
+                            <ul>
+                                {% for film in films %}
+                                {% if movie.id == film.dvd_id %}
+                                    {% for genre in genres %}
+                                        {% if film.genre_id == genre.id %}
+                                            <li>{{genre.topic}}</li>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                            </ul>
+                        </td>
+                        <td>
                             <form action="/theAdmin/movie/{{movie.id}}/update/" method="post">
                                 {% csrf_token %}
                                 <section>
                                     <label for="title">DVD Title</label>
                                     <input type="text" name="title" value="{{movie.title}}">
-                                </section>
-                                <section>
-                                    <label for="genre">Genre</label>
-                                    <input type="text" name="genre" value="{{movie.genre}}">
                                 </section>
                                 <section>
                                     <label for="actors">Actors</label>

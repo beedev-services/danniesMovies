@@ -9,10 +9,14 @@ def index(request):
         users= User.objects.all().values()
         dvds = Dvd.objects.order_by('title')
         cds = Cds.objects.order_by('albumTitle')
+        genres = Topic.objects.all().values().order_by('topic')
+        films = Film.objects.all().values()
         context = {
             'users': users,
             'dvds': dvds,
             'cds': cds,
+            'films': films,
+            'genres': genres,
         }
         return render(request, 'index.html', context)
     else:
@@ -20,31 +24,45 @@ def index(request):
         user = User.objects.get(id=request.session['user_id'])
         dvds = Dvd.objects.order_by('title')
         cds = Cds.objects.order_by('albumTitle')
+        genres = Topic.objects.all().values().order_by('topic')
+        films = Film.objects.all().values()
         context = {
             'users': users,
             'user': user,
             'dvds': dvds,
             'cds': cds,
+            'films': films,
+            'genres': genres,
         }
+        print('films', films)
+        print('genres', genres)
         return render(request, 'logged/dashboard.html', context)
 
 def allMovies(request):
     if 'user_id' not in request.session:
         users= User.objects.all().values()
         dvds = Dvd.objects.order_by('title')
+        films = Film.objects.all().values()
+        genres = Topic.objects.all().values().order_by('topic')
         context = {
             'users': users,
             'dvds': dvds,
+            'films': films,
+            'genres': genres,
         }
         return render(request, 'movies.html', context)
     else:
         user = User.objects.get(id=request.session['user_id'])
         users= User.objects.all().values()
         dvds = Dvd.objects.order_by('title')
+        films = Film.objects.all().values()
+        genres = Topic.objects.all().values().order_by('topic')
         context = {
             'users': users,
             'user': user,
             'dvds': dvds,
+            'films': films,
+            'genres': genres,
         }
         return render(request, 'logged/dashMovies.html', context)
 
@@ -52,19 +70,27 @@ def viewMovie(request, dvd_id):
     if 'user_id' not in request.session:
         users=User.objects.all().values()
         dvd=Dvd.objects.get(id=dvd_id)
+        genres = Topic.objects.all().values().order_by('topic')
+        films = Film.objects.all().values()
         context = {
             'users': users,
             'dvd': dvd,
+            'films': films,
+            'genres': genres,
         }
         return render(request, 'viewMovie.html', context)
     else:
         users=User.objects.all().values()
         user=User.objects.get(id=request.session['user_id'])
         dvd=Dvd.objects.get(id=dvd_id)
+        genres = Topic.objects.all().values().order_by('topic')
+        films = Film.objects.all().values()
         context = {
             'users': users,
             'user': user,
             'dvd': dvd,
+            'films': films,
+            'genres': genres,
         }
         return render(request, 'logged/dashViewMovie.html', context)
 
@@ -113,13 +139,18 @@ def theAdmin(request):
         return redirect('/')
     else: 
         user = User.objects.get(id=request.session['user_id'])
-        movies = Dvd.objects.all().values()
+        movies = Dvd.objects.all().values().order_by('-id')
         musics = Cds.objects.all().values()
+        genres = Topic.objects.all().values().order_by('topic')
+        films = Film.objects.all().values()
         context = {
             'user': user,
             'movies': movies,
             'musics': musics,
+            'genres': genres,
+            'films': films,
         }
+        print("films: ", films)
         return render(request, 'logged/theAdmin.html', context)
 
 def logReg(request):
@@ -172,17 +203,30 @@ def logout(request):
     messages.error(request, 'You have been logged out')
     return redirect('/')
 
+def createGenre(request):
+    Topic.objects.create(
+        topic = request.POST['topic']
+    )
+    messages.error(request, 'Genre Created')
+    return redirect('/theAdmin/')
 
 def createDvd(request):
     Dvd.objects.create(
         title = request.POST['title'],
-        genre = request.POST['genre'],
         actors = request.POST['actors'],
         year = request.POST['year'],
         misc = request.POST['misc'],
         user_id = request.POST['user']
     )
     messages.error(request, 'Movie created!')
+    return redirect('/theAdmin/')
+
+def addMovieGenre(request):
+    Film.objects.create(
+        dvd_id = request.POST['dvd'],
+        genre_id = request.POST['genre']
+    )
+    messages.error(request, 'Genre added')
     return redirect('/theAdmin/')
 
 def createCds(request):
@@ -198,7 +242,6 @@ def createCds(request):
 def updateDvd(request, dvd_id):
     toUpdate = Dvd.objects.get(id=dvd_id)
     toUpdate.title = request.POST['title']
-    toUpdate.genre = request.POST['genre']
     toUpdate.actors = request.POST['actors']
     toUpdate.year = request.POST['year']
     toUpdate.misc = request.POST['misc']
