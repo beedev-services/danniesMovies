@@ -23,7 +23,7 @@ def saveGenre(sender, instance, **kwargs):
 @receiver(post_save, sender=Dvd)
 def createMovie(sender, instance, created, **kwargs):
     if created:
-        Movie.objects.create(dvd=instance)
+        Movie.objects.create(movie=instance)
 
 @receiver(post_save, sender=Dvd)
 def saveMovie(sender, instance, **kwargs):
@@ -32,7 +32,7 @@ def saveMovie(sender, instance, **kwargs):
 @receiver(post_save, sender=Cds)
 def createMusic(sender, instance, created, **kwargs):
     if created:
-        Music.objects.create(cds=instance)
+        Music.objects.create(music=instance)
 
 @receiver(post_save, sender=Cds)
 def saveMusic(sender, instance, **kwargs):

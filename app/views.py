@@ -249,6 +249,13 @@ def updateDvd(request, dvd_id):
     messages.error(request, "DVD Updated")
     return redirect('/theAdmin/')
 
+def updateTopic(request, topic_id):
+    toUpdate = Topic.objects.get(id=topic_id)
+    toUpdate.topic = request.POST['topic']
+    toUpdate.save()
+    messages.error(request, 'Genre updated')
+    return redirect('/theAdmin/')
+
 def updateCds(request, cds_id):
     toUpdate = Cds.objects.get(id=cds_id)
     toUpdate.albumTitle = request.POST['albumTitle']
@@ -262,6 +269,12 @@ def deleteDvd(request, dvd_id):
     toDelete = Dvd.objects.get(id=dvd_id)
     toDelete.delete()
     messages.error(request, "DVD removed")
+    return redirect('/theAdmin/')
+
+def deleteTopic(request, topic_id):
+    toDelete = Topic.objects.get(id=topic_id)
+    toDelete.delete()
+    messages.error(request, "Genre deleted")
     return redirect('/theAdmin/')
 
 def deleteCds(request, cds_id):

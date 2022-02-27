@@ -12,6 +12,8 @@ urlpatterns = [
     path('movie/', views.allMovies),
     path('movie/<int:dvd_id>/view/', views.viewMovie),
     path('theAdmin/genre/add/', views.createGenre),
+    path('theAdmin/genre/<int:topic_id>/update/', views.updateTopic),
+    path('theAdmin/genre/<int:topic_id>/delete/', views.deleteTopic),
     path('theAdmin/movie/create/', views.createDvd),
     path('theAdmin/movie/genre/add/', views.addMovieGenre),
     path('theAdmin/movie/<int:dvd_id>/update/', views.updateDvd),

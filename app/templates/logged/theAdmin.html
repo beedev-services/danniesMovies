@@ -208,6 +208,32 @@
                 {% endfor %}
             </table>
         </div>
+        <button type="button" class="collapsible"><h3>Genres</h3></button>
+        <div class="content">
+            <table>
+                <tr>
+                    <th>Genre</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+                {% for genre in genres %}
+                    <tr>
+                        <td>{{genre.topic}}</td>
+                        <td>
+                            <form action="/theAdmin/genre/{{genre.id}}/update/" method="post">
+                                {% csrf_token %}
+                                <section>
+                                    <label for="topic">Genre</label>
+                                    <input type="text" name="topic" value="{{genre.topic}}">
+                                </section>
+                                <button>Update Genre</button>
+                            </form>
+                        </td>
+                        <td><a href="/theAdmin/genre/{{genre.id}}/delete/">Delete Genre</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
     </main>
     <footer>
         {% block footer %} {% include 'menus/footer.html' %} {% endblock footer %}
